@@ -27,7 +27,7 @@ const Navbar = () => {
                     <motion.ul 
                         initial={{x:200, y:200, opacity:0}} 
                         animate={{x:0, y:0, opacity:1}} 
-                        className='fixed top-[70px] right-0 w-2/4 bg-[#f19cbb] h-[calc(100dvh-70px)] flex items-center justify-around flex-col'>
+                        className='fixed top-[70px] right-0 w-2/4 bg-cyan-950 h-[calc(100dvh-70px)] flex items-center justify-around flex-col'>
                         {NavItems.map((item) => (
                             <li key={item.id}> 
                                 <Link href={item.link}> {item.label} </Link>
