@@ -2,10 +2,8 @@
 import Link from 'next/link'
 import { NavItems } from "@/constants"
 import { useState } from 'react'
-import { IoClose } from 'react-icons/io5'
-import { IoIosMenu } from 'react-icons/io'
+import { IoClose, IoMenu } from 'react-icons/io5'
 import { motion } from "framer-motion"
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 
 const Navbar = () => {
     const [isOpen, setOpen] = useState(false);
@@ -30,7 +28,7 @@ const Navbar = () => {
                 </ul>
 
                 <div onClick={handleNavbar} className='block md:hidden cursor-pointer'>
-                    {isOpen ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+                    {isOpen ? <IoClose size={30} /> : <IoMenu size={30} />}
                 </div>
 
                 <ul className={
@@ -39,7 +37,7 @@ const Navbar = () => {
                         'ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[100%]'}>
 
                     <h1 className='w-full text-3xl font-bold text-[#00d9fa] m-4 uppercase'> Logo </h1>
-                    
+
                     {/* <Link className='w-full text-3xl font-bold text-[#00d9fa] m-4 uppercase' href={"/"}>
                     Logo
                     </Link> */}
