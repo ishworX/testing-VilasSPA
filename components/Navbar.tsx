@@ -5,49 +5,59 @@ import { useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import { IoIosMenu } from 'react-icons/io'
 import { motion } from "framer-motion"
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 
 const Navbar = () => {
     const [isOpen, setOpen] = useState(false);
+    const handleNavbar = () => {
+        setOpen(!isOpen);
+    }
     return (
-        <div className="bg-[#f19cbb] fixed top-0 left-0 w-full" >
-            <nav className='max-w-screen-xl h-[70px] mx-auto flex items-center justify-between px-4 text-white'>
-                <Link className='text-xl uppercase font-semibold' href={"/"}> 
-                Logo 
+        <>
+            <div className="bg-[#f19cbb] flex justify-between items-center h-24 mx-auto text-white px-4" >
+                {/* <div className='max-w-screen-xl h-[70px] mx-auto flex items-center justify-between px-4 text-white'> */}
+                <Link className='text-xl uppercase text-[#ffffff] font-semibold' href={"/"}>
+                    Logo
                 </Link>
 
-                <ul className='hidden md:flex items-center gap-7'>
+                <ul className='hidden md:flex'>
                     {NavItems.map((item) => (
-                        <li key={item.id}> 
+                        <li key={item.id}
+                            className='p-4 hover:bg-[#00df9a] rounded-xl m-2 cursor-pointer duration-300 hover:text-black'>
                             <Link href={item.link}> {item.label} </Link>
                         </li>
                     ))}
                 </ul>
 
-                {isOpen && (
-                    <motion.ul 
-                        initial={{x:200, y:200, opacity:0}} 
-                        animate={{x:0, y:0, opacity:1}} 
-                        className='fixed top-[70px] right-0 w-2/4 bg-cyan-950 h-[calc(100dvh-70px)] flex items-center justify-around flex-col'>
-                        {NavItems.map((item) => (
-                            <li key={item.id}> 
+                <div onClick={handleNavbar} className='block md:hidden cursor-pointer'>
+                    {isOpen ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+                </div>
+
+                <ul className={
+                    isOpen ? 'fixed md:hidden left-0 top-0 w-[60%] h-full border-r-gray-900 bg-cyan-950 ease-in-out duration-500'
+                        :
+                        'ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[100%]'}>
+
+                    <h1 className='w-full text-3xl font-bold text-[#00d9fa] m-4 uppercase'> Logo </h1>
+                    
+                    {/* <Link className='w-full text-3xl font-bold text-[#00d9fa] m-4 uppercase' href={"/"}>
+                    Logo
+                    </Link> */}
+
+                    {
+                        NavItems.map((item) => (
+                            <li key={item.id}
+                                className='p-4 border-b rounded-xl hover:bg-[#00d9fa]  during-300 hover:text-black cursor-pointer border-gray-600'>
                                 <Link href={item.link}> {item.label} </Link>
                             </li>
-                        ))}
-                    </motion.ul>
-                    )
-                }
-
-                <motion.div 
-                        initial={{x:200, y:200, opacity:0}} 
-                        animate={{x:0, y:0, opacity:1}} 
-                    
-                        onClick={() => setOpen(!isOpen)} 
-                    className='block text-4xl cursor-pointer md:hidden'>
-                    {isOpen ? <IoClose/> : <IoIosMenu />}
-                </motion.div>
-            </nav>
-        </div>
+                        ))
+                    }
+                </ul>
+            </div>
+        </>
     )
 }
 
 export default Navbar
+
+//saving for later bg-cyan-950
