@@ -51,5 +51,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-// Need the sidebar distance to be smaller than the width of the Buttons
