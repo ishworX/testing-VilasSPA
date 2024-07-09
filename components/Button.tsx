@@ -1,23 +1,86 @@
-import Image from "next/image";
+/* eslint-disable react/jsx-props-no-spreading */
+import { forwardRef, useMemo } from "react";
+import { type VariantProps } from "tailwind-variants";
+import { TbLoader } from "react-icons/tb";
+import { outlineButton, solidButton, ghostButton } from "./ButtonStyles";
 
-type ButtonProps = {
-    type: 'button' | 'submit';
-    title: string;
-    icon?: string;
-    variant: string;
-    full?: boolean;
+// define all the button attributes
+type BaseButtonAttributes = React.ComponentPropsWithoutRef<"button">;
+
+// define the ref type
+type Ref = HTMLButtonElement;
+
+// extend the base button attributes
+interface ButtonProps extends BaseButtonAttributes {
+    isLoading?: boolean;
+    disabled?: boolean;
+    leftIcon?: React.ReactElement;
+    rightIcon?: React.ReactElement;
+    buttonStyle?: VariantProps<typeof solidButton | typeof outlineButton | typeof ghostButton>;
+    className?: string,
+    buttonVariant?: "solid" | "outline" | "ghost";
 }
 
-const Button = ({ type, title, full }: ButtonProps) => {
+const Button = forwardRef<Ref, ButtonProps>((props, ref) => {
+    // destructure neccesary props
+    const { type, children, buttonStyle, buttonVariant, disabled, isLoading, leftIcon, rightIcon, className, ...rest } = props;
+
+    // determine icon placement
+    const { newIcon: icon, iconPlacement } = useMemo(() => {
+        let newIcon = rightIcon || leftIcon;
+
+        if (isLoading) {
+            newIcon = <TbLoader className="animate-spin" size={25} />;
+        }
+
+        return {
+            newIcon,
+            iconPlacement: rightIcon ? ("right" as const) : ("left" as const),
+        };
+    }, [isLoading, leftIcon, rightIcon]);
+
+    const renderButtonVariant = () => {
+        if (buttonVariant === "solid") {
+            return solidButton({ ...buttonStyle, className })
+        }
+        if (buttonVariant === "outline") {
+            return outlineButton({ ...buttonStyle, className })
+        }
+        return ghostButton({ ...buttonStyle, className })
+    }
+
     return (
         <button
-            className={`flexCenter gap-3 rounded-full border bg-green-90 px-8 py-4 text-pink transition-all hover:bg-red ${full && 'w-full'}`}
-            type={type}
+            className={renderButtonVariant()}
+            {...rest}
+            type={type ? "submit" : "button"}
+            ref={ref}
+            disabled={disabled || isLoading}
         >
-            <label className="bold-16 whitespace-nowrap cursor-pointer">{title}</label>
+            {/** render icon before */}
+            {icon && iconPlacement === "left" ? (
+                <span className={`inline-flex shrink-0 self-center ${children && !isLoading && "mr-2"}`}>{icon}</span>
+            ) : null}
+
+            {/** hide button text during loading state */}
+            {!isLoading && children}
+
+            {/** render icon after */}
+            {icon && iconPlacement === "right" ? (
+                <span className={`inline-flex shrink-0 self-center  ${children && !isLoading && "ml-2"}`}>{icon}</span>
+            ) : null}
         </button>
+    );
+});
 
-    )
-}
+// set default props
+Button.defaultProps = {
+    buttonStyle: {},
+    buttonVariant: "solid",
+    isLoading: false,
+    disabled: false,
+    leftIcon: undefined,
+    rightIcon: undefined,
+};
 
-export default Button
+export default Button;
