@@ -45,7 +45,7 @@ export const baseButton = tv({
             xs: "rounded-[2px]",
             sm: "rounded-[4px]",
             normal: "rounded-[8px]",
-            lg: "rounded-[12px]",
+            lg: "rounded-[18px]",
             full: "rounded-full",
         },
         behavior: {
@@ -65,6 +65,9 @@ export const solidButton = tv({
             yellow:
                 "bg-[#FFC700] text-gray-100 shadow-yellow active:shadow-none active:translate-y-[5px]",
             gray: "bg-[#64748B] text-gray-100 shadow-blueGray active:shadow-none active:translate-y-[5px]",
+            pink:
+                "bg-[#ff1dce] text-gray-100 shadow-[#FFC0CB] active:shadow-none active:translate-y-[50px]",
+
         },
     },
 });
@@ -81,6 +84,7 @@ export const outlineButton = tv({
             yellow:
                 "ring-[#FFC700] text-[#FFC700] shadow-yellow active:shadow-none active:translate-y-[5px]",
             gray: "ring-[#64748B] text-[#64748B] shadow-blueGray active:shadow-none active:translate-y-[5px]",
+            pink: "ring-[#ff1dce] text-[#64748B] shadow-[#FFC0CB] active:shadow-none active:translate-y-[5px]",
         },
     },
 });
@@ -94,6 +98,7 @@ export const ghostButton = tv({
             teal: "text-[#0D9488]",
             yellow: "text-[#FFC700]",
             gray: "text-[#64748B]",
+            pink: "text-[#FFC0CB]",
         },
     },
 });
