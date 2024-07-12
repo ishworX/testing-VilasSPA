@@ -57,5 +57,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-//saving for later bg-cyan-950
