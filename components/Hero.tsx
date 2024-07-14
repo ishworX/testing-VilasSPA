@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from './ui/Button'
 import { TbAdFilled } from 'react-icons/tb';
+import Image from 'next/image';
 
 function ActionButtons() {
     return (
@@ -21,31 +22,28 @@ function ActionButtons() {
 
 export const Hero = () => {
     return (
-        <section
-            className="max-w-screen-2xl m-auto w-full grid grow gap-4 px-0 sm:px-0 md:grid-cols-2 md:flex-row lg:gap-6 lg:px-0 xl:px-0"
-        >
-            <div className="flex flex-1 flex-col items-start gap-12 pb-6 md:my-20 lg:my-44 lg:pb-0 pl-3 sm:pl-8 lg:pl-16 xl:pl-32">
-                <div className="flex max-w-lg flex-col gap-6">
-                    <h3 className="text-4xl font-semibold text-slate-950 md:text-5xl">
-                        VILAS AESTHETICS NAILS & SPA.
-                    </h3>
-                    <h4 className="text-lg font-normal leading-7 text-slate-500">
-                        Experience the exceptional spa services at Vilas Aesthitcs. Our dedicated team is here to serve you.
-                    </h4>
+        <div className='h-[calc(100vh-13vh)] w-full flex justify-center flex-col'>
+            <div className='w-4/5 mx-auto items-center grid grid-cols-1 lg:grid-cols-5 gap-8'>
+            {/* Text Content */}
+            <div className='col-span-2'>
+                <h1 className='text-2xl sm:text-4xl lg:text-5xl xl:text-7xl text-blue-950 font-bold'>
+                    This will be the title!
+                </h1>
+                <p className='text-sm md:text-[17px] text-gray-700 text-opacity-80 mt-4 font-medium'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magni, deleniti quis tempora consectetur eligendi magnam tenetur enim saepe voluptates libero alias placeat aliquam odit ut sit deserunt laborum fuga ipsum. Cum, ad maxime corrupti possimus quos eum aliquid sapiente perspiciatis minus modi inventore natus provident ullam itaque sit similique.
+                </p>
+                <div className='flex items-center space-x-2 mt-10'>
+                    <ActionButtons />
                 </div>
-                <ActionButtons />
             </div>
-            <div className="order-first flex w-full flex-1 items-center justify-center bg-[#FFDCE7] py-28 md:order-last lg:py-0">
-                <img
-                    src="./hero.png"
-                    alt=""
-                    width={587}
-                    height={816}
-                    className="h-[200px] w-[250px] md:h-[600px] md:w-[600px]"
-                />
+            {/* Image Content */}
+            <div>
+                <Image src="/hero.png" alt="hero" width={700} height={700}/>
+
             </div>
-        </section>
 
+            </div>
 
+        </div>
     )
 }
