@@ -2,7 +2,7 @@
 import { forwardRef, useMemo } from "react";
 import { type VariantProps } from "tailwind-variants";
 import { TbLoader } from "react-icons/tb";
-import { outlineButton, solidButton,ghostButton } from "./ButtonStyles";
+import { outlineButton, solidButton, ghostButton } from "./ButtonStyles";
 
 // define all the button attributes
 type BaseButtonAttributes = React.ComponentPropsWithoutRef<"button">;
@@ -16,14 +16,14 @@ interface ButtonProps extends BaseButtonAttributes {
   disabled?: boolean;
   leftIcon?: React.ReactElement;
   rightIcon?: React.ReactElement;
-  buttonStyle?: VariantProps<typeof solidButton |typeof outlineButton|typeof ghostButton>;
-  className?:string,
+  buttonStyle?: VariantProps<typeof solidButton | typeof outlineButton | typeof ghostButton>;
+  className?: string,
   buttonVariant?: "solid" | "outline" | "ghost";
 }
 
 const Button = forwardRef<Ref, ButtonProps>((props, ref) => {
   // destructure neccesary props
-  const { type, children, buttonStyle, buttonVariant, disabled, isLoading, leftIcon, rightIcon,className, ...rest } = props;
+  const { type, children, buttonStyle, buttonVariant, disabled, isLoading, leftIcon, rightIcon, className, ...rest } = props;
 
   // determine icon placement
   const { newIcon: icon, iconPlacement } = useMemo(() => {
@@ -39,14 +39,14 @@ const Button = forwardRef<Ref, ButtonProps>((props, ref) => {
     };
   }, [isLoading, leftIcon, rightIcon]);
 
-  const renderButtonVariant=()=>{
-    if(buttonVariant==="solid"){
-      return solidButton({...buttonStyle,className})
+  const renderButtonVariant = () => {
+    if (buttonVariant === "solid") {
+      return solidButton({ ...buttonStyle, className })
     }
-    if(buttonVariant==="outline"){
-      return outlineButton({...buttonStyle,className})
+    if (buttonVariant === "outline") {
+      return outlineButton({ ...buttonStyle, className })
     }
-    return ghostButton({...buttonStyle,className})
+    return ghostButton({ ...buttonStyle, className })
   }
 
   return (
