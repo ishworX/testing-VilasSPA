@@ -6,12 +6,12 @@ import Image from 'next/image';
 function ActionButtons() {
     return (
         <div className="flex gap-4">
-            <Button buttonStyle={{ color: 'pink', rounded: 'lg', size: 'md' }}>
+            <Button buttonStyle={{ color: 'yellow', rounded: 'lg', size: 'md' }}>
                 Book Appointment
             </Button>
 
             <Button
-                buttonStyle={{ color: 'pink', rounded: 'lg', size: 'md' }}
+                buttonStyle={{ color: 'yellow', rounded: 'lg', size: 'md' }}
                 buttonVariant="outline"
             >
                 See Services
