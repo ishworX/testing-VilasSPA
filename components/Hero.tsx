@@ -22,6 +22,8 @@ function ActionButtons() {
 
 export const Hero = () => {
     return (
-        // Trying new section
+        <div>
+            This is Hero
+        </div>
     )
 }
