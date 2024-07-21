@@ -1038,6 +1038,12 @@ body {
   --tw-shadow-colored: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+@media (min-width: 400px){
+
+  .xs\:mt-10{
+    margin-top: 2.5rem;
+  }
+}
 @media (min-width: 640px){
 
   .sm\:px-0{
