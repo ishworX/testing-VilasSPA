@@ -9,13 +9,13 @@ function ActionButtons() {
             <Button
                 type="button"
                 title="Book Appointment"
-                variant="btn_green"
+                variant="btn_pink"
             />
 
             <Button
                 type="button"
                 title="See Services"
-                variant="btn_green"
+                variant="btn_white"
             />
         </div>
     );
